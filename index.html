@@ -134,30 +134,6 @@
             align-items: center;
             justify-content: center;
         }
-        .alt-join {
-            background: #fafafa;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 16px;
-        }
-        .alt-join h3 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #555;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 0.9rem;
-        }
-        .detail-row:last-child { border-bottom: none; }
-        .detail-row .label { color: #888; font-weight: 500; }
-        .detail-row .value { font-weight: 600; color: #1a1a2e; font-family: 'SF Mono', monospace; }
         .reminders {
             list-style: none;
         }
@@ -253,12 +229,30 @@
         .reconnect-note strong {
             color: #0f3460;
         }
+        .help-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 14px 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #e65100;
+            margin-top: 16px;
+        }
+        .help-box strong {
+            color: #bf360c;
+        }
+        .help-box a {
+            color: #bf360c;
+            font-weight: 600;
+            text-decoration: none;
+        }
         @media (max-width: 480px) {
             .card { padding: 20px; }
             th, td { padding: 8px 4px; font-size: 0.8rem; }
             .header h1 { font-size: 1.3rem; }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
     <div class="container">
@@ -270,7 +264,7 @@
             <p>Join our exclusive live session below</p>
         </div>
 
-        <!-- Main CTA — NOW AT THE TOP -->
+        <!-- Main CTA -->
         <div class="card">
             <h2>🔗 Connect to Zoom</h2>
             <a href="https://live.travelaht.com/aht" id="joinBtn" class="cta-button inactive" target="_blank" rel="noopener">
@@ -283,24 +277,13 @@
         <div class="card">
             <h2>📋 How to Join</h2>
             <ol class="steps">
-                <li>Enter the <strong>email address</strong> where you received this invitation</li>
-                <li>Zoom will automatically pop up — <strong>wait for the host to check you in</strong></li>
+                <li>Enter the <strong>email</strong> where you've received the invite, or your preferred email to receive the travel certificate</li>
+                <li>Zoom automatically launches if it's installed. If not, you can select <strong>"Join from Browser"</strong></li>
+                <li><strong>Wait for the host to check you in</strong></li>
             </ol>
-
-            <div class="alt-join">
-                <h3>Other Ways to Sign In</h3>
-                <div class="detail-row">
-                    <span class="label">Step 1</span>
-                    <span class="value">Open Zoom → Click JOIN</span>
-                </div>
-                <div class="detail-row">
-                    <span class="label">Meeting ID</span>
-                    <span class="value">917 5014 9037</span>
-                </div>
-                <div class="detail-row">
-                    <span class="label">Passcode</span>
-                    <span class="value">#2026</span>
-                </div>
+            <div class="help-box">
+                <strong>Having trouble connecting?</strong><br>
+                Text or call <a href="tel:808-515-3642">808-515-3642</a>
             </div>
         </div>
 
@@ -366,7 +349,7 @@
             <div class="your-time" id="yourTime"></div>
         </div>
 
-        <!-- What to Expect — NOW AT THE BOTTOM -->
+        <!-- What to Expect — Bottom -->
         <div class="card">
             <h2>✨ What to Expect</h2>
             <ul class="highlights">
