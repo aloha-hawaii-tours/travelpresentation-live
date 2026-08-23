@@ -87,6 +87,7 @@
         .cta-button.active {
             background: #0f3460;
             color: #fff;
+            animation: glow 2s ease-in-out infinite;
         }
         .cta-button.active:hover {
             background: #16213e;
@@ -96,6 +97,14 @@
             background: #e0e0e0;
             color: #888;
             cursor: not-allowed;
+        }
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 8px rgba(15, 52, 96, 0.4), 0 0 20px rgba(15, 52, 96, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(15, 52, 96, 0.7), 0 0 40px rgba(15, 52, 96, 0.4);
+            }
         }
         .countdown {
             text-align: center;
@@ -312,37 +321,37 @@
                     <tr>
                         <td class="timezone">Eastern</td>
                         <td>2:00 PM</td>
-                        <td>7:30 PM</td>
+                        <td>8:30 PM</td>
                     </tr>
                     <tr>
                         <td class="timezone">Central</td>
                         <td>1:00 PM</td>
-                        <td>6:30 PM</td>
+                        <td>7:30 PM</td>
                     </tr>
                     <tr>
                         <td class="timezone">Mountain</td>
                         <td>12:00 PM</td>
-                        <td>5:30 PM</td>
+                        <td>6:30 PM</td>
                     </tr>
                     <tr>
                         <td class="timezone">Pacific</td>
                         <td>11:00 AM</td>
-                        <td>4:30 PM</td>
+                        <td>5:30 PM</td>
                     </tr>
                     <tr>
                         <td class="timezone">Alaska</td>
                         <td>10:00 AM</td>
-                        <td>3:30 PM</td>
+                        <td>4:30 PM</td>
                     </tr>
                     <tr>
                         <td class="timezone">Hawaii</td>
                         <td>8:00 AM</td>
-                        <td>1:30 PM</td>
+                        <td>2:30 PM</td>
                     </tr>
                     <tr>
                         <td class="timezone">Vancouver</td>
                         <td>11:00 AM</td>
-                        <td>4:30 PM</td>
+                        <td>5:30 PM</td>
                     </tr>
                 </tbody>
             </table>
@@ -366,8 +375,8 @@
     </div>
 
     <script>
-        const START_HOUR = 13, START_MIN = 45;  // 1:45 PM ET
-        const END_HOUR = 19, END_MIN = 40;      // 7:40 PM ET
+        const START_HOUR = 13, START_MIN = 45;  // 1:45 PM EDT
+        const END_HOUR = 20, END_MIN = 30;      // 8:30 PM EDT
 
         function getETNow() {
             const now = new Date();
@@ -429,7 +438,7 @@
             const etStart = new Date();
             etStart.setHours(14, 0, 0, 0);
             const etEnd = new Date();
-            etEnd.setHours(19, 30, 0, 0);
+            etEnd.setHours(20, 30, 0, 0);
 
             const etStr = etStart.toLocaleString('en-US', { timeZone: 'America/New_York' });
             const etDate = new Date(etStr);
