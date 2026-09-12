@@ -260,31 +260,174 @@
             th, td { padding: 8px 4px; font-size: 0.8rem; }
             .header h1 { font-size: 1.3rem; }
         }
+
+        /* ===== Enhancement layer ===== */
+        .card h2 svg { flex-shrink: 0; }
+
+        /* Hero */
+        .card.hero { position: relative; overflow: hidden; padding: 0; margin-bottom: 0; }
+        .hero-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .ship { animation: bob 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+        @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+        .hero-content { position: relative; z-index: 1; padding: 36px 24px 96px; }
+        .hero-content h1 { display: inline-flex; align-items: center; gap: 10px; }
+        .hero-bonus { position: relative; z-index: 1; margin: 18px auto 0; display: flex; align-items: center; gap: 10px;
+            max-width: 460px; background: rgba(255,255,255,0.94); border: 1.5px solid #ffd166; border-radius: 12px;
+            padding: 10px 16px; font-size: 0.85rem; color: #333; text-align: left; box-shadow: 0 2px 10px rgba(15,52,96,0.15); }
+        .hero-bonus svg { flex-shrink: 0; }
+        .hero-bonus strong { color: #0f3460; }
+
+        /* Flip-clock countdown */
+        .cd-caption { text-align: center; font-size: 0.85rem; color: #888; margin-top: 10px; }
+        .flip-clock { display: flex; gap: 8px; justify-content: center; margin-top: 10px; }
+        .flip-unit { background: #0f3460; color: #fff; border-radius: 10px; padding: 8px 10px; min-width: 62px; text-align: center;
+            box-shadow: 0 3px 8px rgba(15,52,96,0.3); }
+        .flip-unit .num { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+        .flip-unit .lbl { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.75; }
+
+        /* Wide-screen bonus card */
+        .bonus-card { border: 2px solid #ffd166; background: linear-gradient(180deg, #fffdf4, #ffffff); }
+        .bonus-text { font-size: 0.95rem; color: #333; }
+        .voucher-tag { margin-top: 14px; display: flex; align-items: center; gap: 8px;
+            background: linear-gradient(90deg, #ffd166, #ffb347); color: #5c430c; font-weight: 700; font-size: 0.9rem;
+            padding: 10px 14px; border-radius: 10px; }
+        .voucher-tag svg { flex-shrink: 0; }
+
+        /* Certificate preview */
+        .cert-preview { display: flex; justify-content: center; margin-top: 20px; }
+        .cert-doc { position: relative; width: 280px; background: linear-gradient(160deg, #fffdf5, #f7f0dc);
+            border: 1px solid #e3d5a8; border-radius: 8px; padding: 28px 18px 18px; text-align: center;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.10); transform: rotate(-1.5deg); }
+        .cert-ribbon { position: absolute; top: 12px; left: -8px; background: #0f3460; color: #fff;
+            font-size: 0.55rem; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 0 4px 4px 0; }
+        .cert-seal { position: absolute; top: -14px; right: -10px; width: 46px; height: 46px; border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #ffd766, #d4a017); color: #7a5c00; display: flex;
+            align-items: center; justify-content: center; font-size: 20px; border: 2px dashed #b8860b;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+        .cert-kicker { font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase; color: #8a6d1d; }
+        .cert-title { font-size: 1.35rem; font-weight: 800; letter-spacing: 4px; color: #0f3460; }
+        .cert-divider { width: 60%; height: 1px; background: #c9b26a; margin: 10px auto; }
+        .cert-feature { font-size: 0.98rem; font-weight: 700; color: #5c430c; }
+        .cert-foot { font-size: 0.7rem; color: #93855c; margin-top: 10px; }
+
+        /* Trust bar */
+        .trust-bar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px;
+            font-size: 0.78rem; color: #888; margin-bottom: 20px; }
+        .trust-item { display: inline-flex; align-items: center; gap: 5px; }
+        .trust-item svg { flex-shrink: 0; }
+        .trust-dot { color: #ccc; }
+
+        /* Sticky mobile join bar */
+        .sticky-join { position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; background: #fff;
+            padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); box-shadow: 0 -2px 14px rgba(0,0,0,0.15); display: none; }
+        .sticky-btn { display: block; text-align: center; padding: 13px; border-radius: 12px; font-weight: 700;
+            font-size: 1rem; text-decoration: none; background: #e0e0e0; color: #888; }
+        .sticky-btn.active { background: #0f3460; color: #fff; animation: glow 2s ease-in-out infinite; }
+        .sticky-count { text-align: center; font-size: 0.72rem; color: #999; margin-top: 5px; }
+        @media (max-width: 560px) {
+            .sticky-join { display: block; }
+            body { padding-bottom: 92px; }
+            .hero-content { padding: 28px 18px 84px; }
+        }
+
+        /* SVG list bullets (override emoji) */
+        .reminders li::before { content: ""; width: 18px; height: 18px; top: 2px;
+            background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23f59e0b%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M10.29%203.86%201.82%2018a2%202%200%200%200%201.71%203h16.94a2%202%200%200%200%201.71-3L13.71%203.86a2%202%200%200%200-3.42%200z%22/%3E%3Cline%20x1%3D%2212%22%20y1%3D%229%22%20x2%3D%2212%22%20y2%3D%2213%22/%3E%3Cline%20x1%3D%2212%22%20y1%3D%2217%22%20x2%3D%2212.01%22%20y2%3D%2217%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-size: contain; }
+        .reminders li.highlight::before { content: ""; width: 18px; height: 18px; top: 2px;
+            background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%232e7d32%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cline%20x1%3D%2212%22%20y1%3D%222%22%20x2%3D%2212%22%20y2%3D%2222%22/%3E%3Cpath%20d%3D%22M17%205H9.5a3.5%203.5%200%200%200%200%207h5a3.5%203.5%200%200%201%200%207H6%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-size: contain; }
+        .highlights li::before { content: ""; width: 18px; height: 18px; top: 2px;
+            background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%232e7d32%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M8.5%2012.5l2.5%202.5%205-5%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-size: contain; }
+        .highlights li.cert::before { content: ""; width: 18px; height: 18px; top: 2px;
+            background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230f3460%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%228%22%20r%3D%226%22/%3E%3Cpath%20d%3D%22M15.5%2013%2017%2022l-5-3-5%203%201.5-9%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-size: contain; }
+        .highlights li.clock::before { content: ""; width: 18px; height: 18px; top: 2px;
+            background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230f3460%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22/%3E%3Cpath%20d%3D%22M12%207v5l3%202%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-size: contain; }
+        .highlights li.heart::before { content: ""; width: 18px; height: 18px; top: 2px;
+            background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e11d48%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M20.84%204.61a5.5%205.5%200%200%200-7.78%200L12%205.67l-1.06-1.06a5.5%205.5%200%200%200-7.78%207.78l1.06%201.06L12%2021.23l7.78-7.78%201.06-1.06a5.5%205.5%200%200%200%200-7.78z%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-size: contain; }
+
     </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="live-badge" id="liveBadge" style="display:none;">
-                <span class="dot"></span> WE ARE LIVE NOW
+            <div class="card hero">
+                <svg class="hero-scene" viewBox="0 0 560 180" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+                <defs>
+                    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#9fd9f6"/>
+                        <stop offset="1" stop-color="#e6f6ff"/>
+                    </linearGradient>
+                </defs>
+                <rect width="560" height="180" fill="url(#sky)"/>
+                <circle cx="468" cy="38" r="30" fill="#ffd166" opacity="0.35"/>
+                <circle cx="468" cy="38" r="20" fill="#ffd166"/>
+                <g stroke="#4a7fa5" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7">
+                    <path d="M118 38 q6 -6 12 0 q6 -6 12 0"/>
+                    <path d="M158 26 q5 -5 10 0 q5 -5 10 0"/>
+                </g>
+                <g>
+                    <path d="M64 132 q6 -42 -4 -60" stroke="#0b5d43" stroke-width="6" fill="none" stroke-linecap="round"/>
+                    <g transform="translate(60 70)" fill="#0b5d43">
+                        <path d="M0 0 C-16 -6 -30 -2 -38 8 C-26 0 -12 0 0 5 Z"/>
+                        <path d="M0 0 C-8 -16 -22 -22 -36 -18 C-22 -26 -6 -16 2 -6 Z"/>
+                        <path d="M0 0 C0 -18 10 -28 26 -30 C14 -32 -2 -20 -3 -4 Z"/>
+                        <path d="M0 0 C16 -8 30 -6 40 2 C28 -2 12 0 0 6 Z"/>
+                    </g>
+                </g>
+                <g class="ship" fill="#16406e">
+                    <path d="M196 116 h128 l-14 20 h-100 z"/>
+                    <rect x="212" y="94" width="96" height="22" rx="3"/>
+                    <rect x="228" y="78" width="64" height="16" rx="3"/>
+                    <rect x="244" y="64" width="32" height="14" rx="3"/>
+                    <rect x="252" y="50" width="12" height="16" rx="2"/>
+                </g>
+                <g fill="#9fd9f6">
+                    <circle cx="226" cy="105" r="3"/><circle cx="242" cy="105" r="3"/><circle cx="258" cy="105" r="3"/><circle cx="274" cy="105" r="3"/><circle cx="290" cy="105" r="3"/>
+                    <circle cx="240" cy="85" r="2.5"/><circle cx="256" cy="85" r="2.5"/><circle cx="272" cy="85" r="2.5"/>
+                </g>
+                <path d="M0 134 q35 -12 70 0 t70 0 t70 0 t70 0 t70 0 t70 0 t70 0 t70 0 V180 H0 Z" fill="#2aa7c9" opacity="0.45"/>
+                <path d="M0 146 q35 -10 70 0 t70 0 t70 0 t70 0 t70 0 t70 0 t70 0 t70 0 V180 H0 Z" fill="#0e7490" opacity="0.65"/>
+            </svg>
+                <div class="hero-content">
+                    <div class="live-badge" id="liveBadge" style="display:none;">
+                        <span class="dot"></span> WE ARE LIVE NOW
+                    </div>
+                    <h1><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="5" width="15" height="14" rx="2"/><polygon points="23 7 16 12 23 17 23 7"/></svg> Live Presentation</h1>
+                    <p> </p>
+                </div>
+                <div class="hero-bonus">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    <span><strong>+$100 Rewards Voucher Bonus</strong> — join from a laptop, desktop, or tablet for the most stable connection and the best viewing experience.</span>
+                </div>
             </div>
-            <h1>🎥 Live Presentation</h1>
-            <p>Join our exclusive live session below</p>
         </div>
 
         <!-- Main CTA -->
         <div class="card">
-            <h2>🔗 Connect to Zoom</h2>
+            <h2><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Connect to Zoom</h2>
             <a href="https://live.travelaht.com/aht" id="joinBtn" class="cta-button inactive" target="_blank" rel="noopener">
                 JOIN NOW
             </a>
             <div class="countdown" id="countdown"></div>
         </div>
 
+        <!-- Wide Screen Bonus -->
+        <div class="card bonus-card">
+            <h2><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Best on a Wide Screen</h2>
+            <p class="bonus-text">For the <strong>most stable connection</strong> and the <strong>best viewing experience</strong>, please join from a <strong>laptop, desktop, or tablet</strong> rather than a phone.</p>
+            <div class="voucher-tag"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5c430c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4"/><rect x="5" y="12" width="14" height="9"/><line x1="12" y1="8" x2="12" y2="21"/><path d="M12 8s-4 0-5-2 1-4 3-3 2 5 2 5z"/><path d="M12 8s4 0 5-2-1-4-3-3-2 5-2 5z"/></svg><span>+$100 Rewards Voucher bonus — on top of your travel certificate, just for connecting this way.</span></div>
+        </div>
+
         <!-- Instructions -->
         <div class="card">
-            <h2>📋 How to Join</h2>
+            <h2><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 12h6"/><path d="M9 16h6"/></svg> How to Join</h2>
             <ol class="steps">
                 <li>Before joining, please enter the <strong>email</strong> where you prefer to receive your exclusive Travel Certificate after the session.</li>
                 <li>Zoom automatically launches if it's installed. If not, you can select <strong>"Join from Browser"</strong></li>
@@ -298,7 +441,7 @@
 
         <!-- Reminders -->
         <div class="card">
-            <h2>⚠️ Important Reminders</h2>
+            <h2><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Important Reminders</h2>
             <ul class="reminders">
                 <li>Host <strong>cannot accept</strong> participants who are driving or in a moving vehicle</li>
                 <li class="highlight">Laptop, desktop, and tablet users also qualify to receive a $100 rewards voucher bonus (for more stability and the best viewing experience).</li>
@@ -308,7 +451,7 @@
 
         <!-- Schedule -->
         <div class="card">
-            <h2>📅 Daily Schedule</h2>
+            <h2><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Daily Schedule</h2>
             <table>
                 <thead>
                     <tr>
@@ -360,7 +503,7 @@
 
         <!-- What to Expect — Bottom -->
         <div class="card">
-            <h2>✨ What to Expect</h2>
+            <h2><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg> What to Expect</h2>
             <ul class="highlights">
                 <li class="clock"><strong>Just 45 minutes</strong> — quick and to the point</li>
                 <li class="heart"><strong>This is not a timeshare presentation</strong></li>
@@ -368,15 +511,52 @@
                 <li class="cert"><strong>Receive your certificate</strong> if you stay until the end</li>
                 <li class="cert">Once your attendance is marked <strong>completed</strong>, your certificate will be <strong>emailed to you the same day</strong></li>
             </ul>
-            <div class="reconnect-note">
-                <strong>💡 Got disconnected?</strong> No problem — you can reconnect using the same link at any time during the live session.
+            <div class="cert-preview">
+                <div class="cert-doc">
+                    <div class="cert-ribbon">SAME-DAY DELIVERY</div>
+                    <div class="cert-seal">★</div>
+                    <div class="cert-kicker">Exclusive Travel</div>
+                    <div class="cert-title">CERTIFICATE</div>
+                    <div class="cert-divider"></div>
+                    <div class="cert-feature"></div>
+                    <div class="cert-foot">Emailed to you after the session</div>
+                </div>
             </div>
+            <div class="reconnect-note">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg> <strong>Got disconnected?</strong> No problem — you can reconnect using the same link at any time during the live session.
+            </div>
+
+        <!-- Quick Note About Check-in -->
+        <div class="card">
+            <h2><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> A Quick Note About Check-in</h2>
+            <p style="font-size: 0.95rem; color: #333; margin-bottom: 12px;">
+                When you join the presentation, you'll be asked to complete a short participant survey. This simply helps us get to know our audience and understand who we're presenting to.
+            </p>
+            <p style="font-size: 0.95rem; color: #333; margin-bottom: 12px;">
+                Some questions may include your <strong>total household income</strong> and <strong>residency/citizenship</strong>. For household income, please consider the combined income of everyone in your household, including yourself, your spouse/partner, or other contributing family members (<strong>ideally $50,000/year</strong>).
+            </p>
+            <p style="font-size: 0.95rem; color: #333;">
+                The survey does not affect your ability to join the presentation. Everyone is welcome to attend!
+            </p>
         </div>
+        <div class="trust-bar">
+            <span class="trust-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Secure Zoom Session</span>
+            <span class="trust-dot">•</span>
+            <span class="trust-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5"/></svg> Certificate emailed same day</span>
+            <span class="trust-dot">•</span>
+            <span class="trust-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> No purchase required</span>
+        </div>
+    </div>
+
+    <div class="sticky-join">
+        <a id="stickyBtn" class="sticky-btn">JOIN NOW</a>
+        <div class="sticky-count" id="stickyCount"></div>
     </div>
 
     <script>
         const START_HOUR = 13, START_MIN = 45;  // 1:45 PM EDT
         const END_HOUR = 20, END_MIN = 30;      // 8:30 PM EDT
+        const JOIN_LINK = 'https://live.travelaht.com/aht';
 
         function getETNow() {
             const now = new Date();
@@ -398,37 +578,59 @@
             return `${hh}:${mm} ${ampm}`;
         }
 
+        function pad2(n) { return n.toString().padStart(2, '0'); }
+
+        function renderClock(h, m, s) {
+            return `<div class="flip-clock">
+                <div class="flip-unit"><div class="num">${pad2(h)}</div><div class="lbl">Hrs</div></div>
+                <div class="flip-unit"><div class="num">${pad2(m)}</div><div class="lbl">Min</div></div>
+                <div class="flip-unit"><div class="num">${pad2(s)}</div><div class="lbl">Sec</div></div>
+            </div>`;
+        }
+
         function updateUI() {
             const btn = document.getElementById('joinBtn');
             const badge = document.getElementById('liveBadge');
             const countdown = document.getElementById('countdown');
+            const sbtn = document.getElementById('stickyBtn');
+            const scount = document.getElementById('stickyCount');
+            const timeStr = formatTime(START_HOUR, START_MIN);
 
             if (isLive()) {
                 btn.classList.remove('inactive');
                 btn.classList.add('active');
                 btn.textContent = 'JOIN NOW — WE ARE LIVE';
                 badge.style.display = 'inline-flex';
-                countdown.textContent = '';
+                countdown.innerHTML = '';
+                sbtn.classList.add('active');
+                sbtn.textContent = 'JOIN NOW — WE ARE LIVE';
+                sbtn.setAttribute('href', JOIN_LINK);
+                scount.textContent = '';
             } else {
                 btn.classList.remove('active');
                 btn.classList.add('inactive');
                 btn.textContent = 'JOIN NOW';
                 btn.removeAttribute('href');
                 badge.style.display = 'none';
+                sbtn.classList.remove('active');
+                sbtn.removeAttribute('href');
 
                 const et = getETNow();
-                const mins = et.getHours() * 60 + et.getMinutes();
-                const start = START_HOUR * 60 + START_MIN;
+                const nowSec = et.getHours() * 3600 + et.getMinutes() * 60 + et.getSeconds();
+                const startSec = START_HOUR * 3600 + START_MIN * 60;
 
-                if (mins < start) {
-                    const diff = start - mins;
-                    const h = Math.floor(diff / 60);
-                    const m = diff % 60;
-                    const timeStr = formatTime(START_HOUR, START_MIN);
-                    countdown.innerHTML = `Button activates at <span>${timeStr} ET</span> — ${h > 0 ? h + 'h ' : ''}${m}m from now`;
+                if (nowSec < startSec) {
+                    const diff = startSec - nowSec;
+                    const h = Math.floor(diff / 3600);
+                    const m = Math.floor((diff % 3600) / 60);
+                    const s = diff % 60;
+                    countdown.innerHTML = `<div class="cd-caption">Button activates at <span>${timeStr} ET</span></div>` + renderClock(h, m, s);
+                    sbtn.textContent = 'Not live yet';
+                    scount.textContent = `Button activates at ${timeStr} ET (${h > 0 ? h + 'h ' : ''}${m}m)`;
                 } else {
-                    const timeStr = formatTime(START_HOUR, START_MIN);
-                    countdown.innerHTML = `We are offline. Next session starts at <span>${timeStr} ET</span> tomorrow.`;
+                    countdown.innerHTML = `<div class="cd-caption">We are offline. Next session starts at <span>${timeStr} ET</span> tomorrow.</div>`;
+                    sbtn.textContent = 'Currently offline';
+                    scount.textContent = `Next session: ${timeStr} ET tomorrow`;
                 }
             }
         }
@@ -452,7 +654,7 @@
 
         updateUI();
         showUserLocalTime();
-        setInterval(updateUI, 30000);
+        setInterval(updateUI, 1000);
     </script>
 </body>
 </html>
