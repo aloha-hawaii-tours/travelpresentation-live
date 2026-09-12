@@ -350,6 +350,53 @@
             background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23e11d48%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M20.84%204.61a5.5%205.5%200%200%200-7.78%200L12%205.67l-1.06-1.06a5.5%205.5%200%200%200-7.78%207.78l1.06%201.06L12%2021.23l7.78-7.78%201.06-1.06a5.5%205.5%200%200%200%200-7.78z%22/%3E%3C/svg%3E");
             background-repeat: no-repeat; background-size: contain; }
 
+
+        /* ===== Join choice modal ===== */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(10, 20, 45, 0.6); display: none;
+            align-items: center; justify-content: center; z-index: 200; padding: 16px; }
+        .modal-overlay.open { display: flex; }
+        .modal { background: #fff; border-radius: 16px; max-width: 480px; width: 100%; padding: 26px;
+            position: relative; max-height: 88vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            animation: popIn 0.25s ease; }
+        @keyframes popIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal h3 { color: #0f3460; font-size: 1.15rem; margin-bottom: 18px; padding-right: 30px; }
+        .modal-close { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border: none;
+            background: #f0f4f8; color: #666; font-size: 1.05rem; font-weight: 700; border-radius: 50%;
+            cursor: pointer; line-height: 1; }
+        .modal-close:hover { background: #e2e8f0; color: #333; }
+        .choice-btn { display: flex; align-items: center; gap: 14px; width: 100%; padding: 18px;
+            border-radius: 14px; margin-bottom: 12px; text-align: left; font-family: inherit; cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease; }
+        .choice-btn:hover { transform: translateY(-2px); }
+        .choice-btn .choice-ico { flex-shrink: 0; }
+        .choice-title { font-weight: 700; font-size: 1rem; display: block; }
+        .choice-sub { font-size: 0.8rem; display: block; margin-top: 3px; }
+        .choice-btn.mobile { background: #0f3460; color: #fff; border: 2px solid #0f3460; text-decoration: none; }
+        .choice-btn.mobile:hover { box-shadow: 0 6px 16px rgba(15,52,96,0.35); }
+        .choice-btn.mobile .choice-sub { opacity: 0.85; }
+        .choice-btn.wide { background: linear-gradient(180deg, #fffdf4, #ffffff); border: 2px solid #ffd166; }
+        .choice-btn.wide:hover { box-shadow: 0 6px 16px rgba(212,160,23,0.25); }
+        .choice-btn.wide .choice-title { color: #0f3460; }
+        .choice-btn.wide .choice-sub { color: #8a6d1d; font-weight: 600; }
+        .wide-note { margin: 4px 0 0; }
+
+        /* Instructions view */
+        .way { margin-top: 18px; background: #f8f9fb; border-radius: 12px; padding: 16px; }
+        .way-title { font-weight: 700; color: #0f3460; margin-bottom: 8px; font-size: 0.95rem; }
+        .way p, .way li { font-size: 0.9rem; color: #444; }
+        .way ol { padding-left: 20px; }
+        .way li { margin-bottom: 8px; }
+        .big-url { font-size: 1.3rem; font-weight: 800; color: #0f3460; background: #fff;
+            border: 2px dashed #0f3460; border-radius: 10px; padding: 14px 10px; text-align: center;
+            margin: 10px 0; user-select: all; cursor: pointer; word-break: break-all; letter-spacing: 0.3px; }
+        .big-url.copied { border-color: #2e7d32; color: #2e7d32; }
+        .url-hint { text-align: center; font-size: 0.72rem; color: #999; margin-top: -6px; }
+        .big-code { font-family: 'Courier New', monospace; font-size: 1.15rem; font-weight: 700;
+            color: #0f3460; background: #fff; border: 1px solid #d5dde6; padding: 3px 12px;
+            border-radius: 8px; display: inline-block; margin-top: 2px; }
+        .modal-back { margin-top: 18px; background: #f0f4f8; border: none; color: #0f3460; font-weight: 600;
+            padding: 10px 18px; border-radius: 10px; cursor: pointer; font-size: 0.9rem; }
+        .modal-back:hover { background: #e2e8f0; }
     </style>
 <base target="_blank">
 <base target="_blank">
@@ -517,14 +564,13 @@
                     <div class="cert-seal">★</div>
                     <div class="cert-kicker">Exclusive Travel</div>
                     <div class="cert-title">CERTIFICATE</div>
-                    <div class="cert-divider"></div>
-                    <div class="cert-feature"></div>
                     <div class="cert-foot">Emailed to you after the session</div>
                 </div>
             </div>
             <div class="reconnect-note">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg> <strong>Got disconnected?</strong> No problem — you can reconnect using the same link at any time during the live session.
             </div>
+        </div>
 
         <!-- Quick Note About Check-in -->
         <div class="card">
@@ -548,6 +594,56 @@
         </div>
     </div>
 
+    <!-- Join Choice Modal -->
+    <div class="modal-overlay" id="joinModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose" aria-label="Close">&#10005;</button>
+
+            <div id="choiceView">
+                <h3>How will you be joining us today?</h3>
+                <a class="choice-btn mobile" href="https://live.travelaht.com/aht" target="_blank" rel="noopener">
+                    <svg class="choice-ico" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    <span>
+                        <span class="choice-title">Click here if joining Zoom using a Mobile Phone</span>
+                        <span class="choice-sub">Tap to continue to the live presentation</span>
+                    </span>
+                </a>
+                <button class="choice-btn wide" id="wideChoice" type="button">
+                    <svg class="choice-ico" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    <span>
+                        <span class="choice-title">Click here if joining using a Laptop, Desktop or Tablet</span>
+                        <span class="choice-sub">+$100 Rewards Voucher bonus on top &mdash; tap for instructions</span>
+                    </span>
+                </button>
+            </div>
+
+            <div id="wideView" style="display:none;">
+                <h3>Join from your Laptop, Desktop or Tablet</h3>
+                <div class="voucher-tag"><svg class="choice-ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span>+$100 Rewards Voucher bonus &mdash; yours on top, just for connecting this way.</span></div>
+
+                <div class="way">
+                    <div class="way-title">First way &mdash; Web browser</div>
+                    <p>On your other device, open a web browser such as Chrome or Safari, then type this:</p>
+                    <div class="big-url" id="copyUrl">live.travelaht.com/aht</div>
+                    <div class="url-hint">tap the address above to copy it</div>
+                    <p>Zoom launches automatically after you enter your preferred email where you&rsquo;d like to receive your travel voucher.</p>
+                </div>
+
+                <div class="way">
+                    <div class="way-title">Other way &mdash; Zoom app</div>
+                    <p>If you have Zoom installed on your device, just launch it (no need to sign in), then:</p>
+                    <ol>
+                        <li>Click <strong>JOIN</strong></li>
+                        <li>Enter Meeting ID:<br><span class="big-code">917 5014 9037</span></li>
+                        <li>Enter Passcode:<br><span class="big-code">#2026</span></li>
+                    </ol>
+                </div>
+
+                <button class="modal-back" id="wideBack" type="button">&larr; Back to options</button>
+            </div>
+        </div>
+    </div>
+
     <div class="sticky-join">
         <a id="stickyBtn" class="sticky-btn">JOIN NOW</a>
         <div class="sticky-count" id="stickyCount"></div>
@@ -555,7 +651,7 @@
 
     <script>
         const START_HOUR = 13, START_MIN = 45;  // 1:45 PM EDT
-        const END_HOUR = 20, END_MIN = 30;      // 8:30 PM EDT
+        const END_HOUR = 20, END_MIN = 40;      // 8:40 PM EDT
         const JOIN_LINK = 'https://live.travelaht.com/aht';
 
         function getETNow() {
@@ -655,6 +751,57 @@
         updateUI();
         showUserLocalTime();
         setInterval(updateUI, 1000);
+
+        // ===== Join choice modal =====
+        const modal = document.getElementById('joinModal');
+        const choiceView = document.getElementById('choiceView');
+        const wideView = document.getElementById('wideView');
+
+        function openModal() {
+            choiceView.style.display = 'block';
+            wideView.style.display = 'none';
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('joinBtn').addEventListener('click', function(e) {
+            if (isLive()) { e.preventDefault(); openModal(); }
+        });
+        document.getElementById('stickyBtn').addEventListener('click', function(e) {
+            if (isLive()) { e.preventDefault(); openModal(); }
+        });
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+        document.getElementById('wideChoice').addEventListener('click', function() {
+            choiceView.style.display = 'none';
+            wideView.style.display = 'block';
+        });
+        document.getElementById('wideBack').addEventListener('click', function() {
+            wideView.style.display = 'none';
+            choiceView.style.display = 'block';
+        });
+
+        // Tap-to-copy on the big URL
+        const copyUrl = document.getElementById('copyUrl');
+        copyUrl.addEventListener('click', function() {
+            const done = function() {
+                copyUrl.textContent = 'Copied! ✓';
+                copyUrl.classList.add('copied');
+                setTimeout(function() {
+                    copyUrl.textContent = 'live.travelaht.com/aht';
+                    copyUrl.classList.remove('copied');
+                }, 1600);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText('live.travelaht.com/aht').then(done).catch(done);
+            } else { done(); }
+        });
     </script>
 </body>
 </html>
