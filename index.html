@@ -261,10 +261,6 @@
             .header h1 { font-size: 1.3rem; }
         }
 
-                .cta-button.reserve { background: linear-gradient(90deg,#e8552f,#ff8a5c); color:#fff; box-shadow:0 4px 14px rgba(232,85,47,.35); }
-        .cta-button.reserve:hover:not(.inactive) { transform: translateY(-1px); background: linear-gradient(90deg,#d14a28,#f0763f); }
-        .sticky-btn.reserve { background: linear-gradient(90deg,#e8552f,#ff8a5c); color:#fff; }
-
         /* ===== Enhancement layer ===== */
         .card h2 svg { flex-shrink: 0; }
 
@@ -404,7 +400,6 @@
     </style>
 <base target="_blank">
 <base target="_blank">
-<base target="_blank">
 </head>
 <body>
     <div class="container">
@@ -467,8 +462,6 @@
             <a href="https://live.travelaht.com/aht" id="joinBtn" class="cta-button inactive" target="_blank" rel="noopener">
                 JOIN NOW
             </a>
-            <a id="reserveBtn" class="cta-button inactive" target="_blank" rel="noopener">RESERVE YOUR SPOT</a>
-            <div class="countdown" id="reserveHint"></div>
             <div class="countdown" id="countdown"></div>
         </div>
 
@@ -660,7 +653,6 @@
         const START_HOUR = 13, START_MIN = 45;  // 1:45 PM EDT
         const END_HOUR = 20, END_MIN = 40;      // 8:40 PM EDT
         const JOIN_LINK = 'https://live.travelaht.com/aht';
-        const RESERVE_LINK = 'https://aloha-hawaii-tours.github.io/spot-reservation/'; // TODO: update to your scheduler URL
 
         function getETNow() {
             const now = new Date();
@@ -692,20 +684,12 @@
             </div>`;
         }
 
-        function isDayOver() {
-            const et = getETNow();
-            const mins = et.getHours() * 60 + et.getMinutes();
-            return mins > END_HOUR * 60 + END_MIN;
-        }
-
         function updateUI() {
             const btn = document.getElementById('joinBtn');
             const badge = document.getElementById('liveBadge');
             const countdown = document.getElementById('countdown');
             const sbtn = document.getElementById('stickyBtn');
             const scount = document.getElementById('stickyCount');
-            const rbtn = document.getElementById('reserveBtn');
-            const rhint = document.getElementById('reserveHint');
             const timeStr = formatTime(START_HOUR, START_MIN);
 
             if (isLive()) {
@@ -714,66 +698,40 @@
                 btn.textContent = 'JOIN NOW — WE ARE LIVE';
                 badge.style.display = 'inline-flex';
                 countdown.innerHTML = '';
-                sbtn.classList.remove('reserve');
                 sbtn.classList.add('active');
                 sbtn.textContent = 'JOIN NOW — WE ARE LIVE';
                 sbtn.setAttribute('href', JOIN_LINK);
                 scount.textContent = '';
-                // reserve disabled during live
-                rbtn.classList.add('inactive');
-                rbtn.classList.remove('reserve');
-                rbtn.removeAttribute('href');
-                rbtn.textContent = 'RESERVE YOUR SPOT';
-                rhint.innerHTML = 'Reservations for the next session open at <span>8:40 PM ET</span>';
-            } else if (!isDayOver()) {
-                // Before today's session starts
+            } else {
                 btn.classList.remove('active');
                 btn.classList.add('inactive');
                 btn.textContent = 'JOIN NOW';
                 btn.removeAttribute('href');
                 badge.style.display = 'none';
-                sbtn.classList.remove('active','reserve');
+                sbtn.classList.remove('active');
                 sbtn.removeAttribute('href');
-                rbtn.classList.add('inactive');
-                rbtn.classList.remove('reserve');
-                rbtn.removeAttribute('href');
-                rbtn.textContent = 'RESERVE YOUR SPOT';
-                rhint.innerHTML = 'Reservations open after <span>today's session</span>';
 
                 const et = getETNow();
                 const nowSec = et.getHours() * 3600 + et.getMinutes() * 60 + et.getSeconds();
                 const startSec = START_HOUR * 3600 + START_MIN * 60;
-                const diff = startSec - nowSec;
-                const h = Math.floor(diff / 3600);
-                const m = Math.floor((diff % 3600) / 60);
-                const s = diff % 60;
-                countdown.innerHTML = `<div class="cd-caption">Button activates at <span>${timeStr} ET</span></div>` + renderClock(h, m, s);
-                sbtn.textContent = 'Not live yet';
-                scount.textContent = `Button activates at ${timeStr} ET (${h > 0 ? h + 'h ' : ''}${m}m)`;
-            } else {
-                // Sessions done for the day
-                btn.classList.remove('active');
-                btn.classList.add('inactive');
-                btn.textContent = 'JOIN NOW';
-                btn.removeAttribute('href');
-                badge.style.display = 'none';
-                countdown.innerHTML = `<div class="cd-caption">We are offline. Next session starts at <span>${timeStr} ET</span> tomorrow.</div>`;
-                // Reserve active
-                rbtn.classList.remove('inactive');
-                rbtn.classList.add('reserve');
-                rbtn.setAttribute('href', RESERVE_LINK);
-                rbtn.textContent = 'RESERVE YOUR SPOT — NEXT SESSION';
-                rhint.innerHTML = 'Live sessions are done for today — pick your time for tomorrow.';
-                // Sticky reserve
-                sbtn.classList.remove('active');
-                sbtn.classList.add('reserve');
-                sbtn.setAttribute('href', RESERVE_LINK);
-                sbtn.textContent = 'Reserve Your Spot — Next Session';
-                scount.textContent = 'Live sessions are done for today';
+
+                if (nowSec < startSec) {
+                    const diff = startSec - nowSec;
+                    const h = Math.floor(diff / 3600);
+                    const m = Math.floor((diff % 3600) / 60);
+                    const s = diff % 60;
+                    countdown.innerHTML = `<div class="cd-caption">Button activates at <span>${timeStr} ET</span></div>` + renderClock(h, m, s);
+                    sbtn.textContent = 'Not live yet';
+                    scount.textContent = `Button activates at ${timeStr} ET (${h > 0 ? h + 'h ' : ''}${m}m)`;
+                } else {
+                    countdown.innerHTML = `<div class="cd-caption">We are offline. Next session starts at <span>${timeStr} ET</span> tomorrow.</div>`;
+                    sbtn.textContent = 'Currently offline';
+                    scount.textContent = `Next session: ${timeStr} ET tomorrow`;
+                }
             }
         }
 
-        function showUserLocalTime {
+        function showUserLocalTime() {
             const el = document.getElementById('yourTime');
             const etStart = new Date();
             etStart.setHours(14, 0, 0, 0);
