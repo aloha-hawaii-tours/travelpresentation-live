@@ -393,6 +393,13 @@
         .hl { background: linear-gradient(180deg, transparent 55%, #ffe28a 55%); font-weight: 700;
             color: #5c430c; padding: 0 2px; border-radius: 2px; }
 
+        /* Check-in note view (modal step 1) */
+        .note-p { font-size: 0.9rem; color: #444; margin-bottom: 12px; }
+        .understand-btn { display: block; width: 100%; margin-top: 18px; padding: 15px; border: none; border-radius: 12px;
+            background: #0f3460; color: #fff; font-size: 1.05rem; font-weight: 700; font-family: inherit;
+            cursor: pointer; animation: glow 2s ease-in-out infinite; transition: background 0.2s ease; }
+        .understand-btn:hover { background: #16213e; }
+
         /* Instructions view */
         .way { margin-top: 18px; background: #f8f9fb; border-radius: 12px; padding: 16px; }
         .way-title { font-weight: 700; color: #0f3460; margin-bottom: 8px; font-size: 0.95rem; }
@@ -613,7 +620,16 @@
         <div class="modal">
             <button class="modal-close" id="modalClose" aria-label="Close">&#10005;</button>
 
-            <div id="choiceView">
+            <div id="noteView">
+                <h3><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#b35900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> A Quick Note About Check-in</h3>
+                <div class="note-tag">Please read before joining</div>
+                <p class="note-p">When you join the presentation, you&rsquo;ll be asked to complete a short participant survey. This simply helps us get to know our audience and understand who we&rsquo;re presenting to.</p>
+                <p class="note-p">Some questions may include your <strong class="hl">total household income</strong> and <strong>residency/citizenship</strong>. For household income, please consider the <strong class="hl">combined income of everyone</strong> in your household, including yourself, your spouse/partner, or other contributing family members (<strong class="hl">ideally $50,000/year</strong>).</p>
+                <p class="note-p">The survey does not affect your ability to join the presentation. Everyone is welcome to attend!</p>
+                <button class="understand-btn" id="understandBtn" type="button">I Understand — Continue</button>
+            </div>
+
+            <div id="choiceView" style="display:none;">
                 <h3>How will you be joining us today?</h3>
                 <a class="choice-btn mobile" href="https://live.travelaht.com/aht" target="_blank" rel="noopener">
                     <svg class="choice-ico" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
@@ -770,8 +786,11 @@
         const choiceView = document.getElementById('choiceView');
         const wideView = document.getElementById('wideView');
 
+        const noteView = document.getElementById('noteView');
+
         function openModal() {
-            choiceView.style.display = 'block';
+            noteView.style.display = 'block';
+            choiceView.style.display = 'none';
             wideView.style.display = 'none';
             modal.classList.add('open');
             document.body.style.overflow = 'hidden';
@@ -791,6 +810,10 @@
         modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
+        document.getElementById('understandBtn').addEventListener('click', function() {
+            noteView.style.display = 'none';
+            choiceView.style.display = 'block';
+        });
         document.getElementById('wideChoice').addEventListener('click', function() {
             choiceView.style.display = 'none';
             wideView.style.display = 'block';
