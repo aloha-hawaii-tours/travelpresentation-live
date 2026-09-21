@@ -379,6 +379,19 @@
         .choice-btn.wide .choice-title { color: #0f3460; }
         .choice-btn.wide .choice-sub { color: #8a6d1d; font-weight: 600; }
         .wide-note { margin: 4px 0 0; }
+        .wide-nudge { display: flex; align-items: flex-start; gap: 8px; margin-top: 4px; font-size: 0.82rem;
+            color: #6d5410; background: #fff8e6; border: 1px solid #ffd166; border-radius: 10px;
+            padding: 10px 14px; line-height: 1.45; }
+        .wide-nudge svg { flex-shrink: 0; margin-top: 2px; }
+        .wide-nudge strong { color: #5c430c; }
+
+        /* Check-in note card — attention styling */
+        .note-card { border: 2px solid #ffb74d; background: linear-gradient(180deg, #fffaf0, #ffffff); }
+        .note-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: #b35900; background: #ffe8c7; border: 1px solid #ffb74d;
+            border-radius: 20px; padding: 3px 12px; margin-bottom: 12px; }
+        .hl { background: linear-gradient(180deg, transparent 55%, #ffe28a 55%); font-weight: 700;
+            color: #5c430c; padding: 0 2px; border-radius: 2px; }
 
         /* Instructions view */
         .way { margin-top: 18px; background: #f8f9fb; border-radius: 12px; padding: 16px; }
@@ -573,13 +586,14 @@
         </div>
 
         <!-- Quick Note About Check-in -->
-        <div class="card">
-            <h2><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> A Quick Note About Check-in</h2>
+        <div class="card note-card">
+            <h2><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#b35900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> A Quick Note About Check-in</h2>
+            <div class="note-tag">Please read before joining</div>
             <p style="font-size: 0.95rem; color: #333; margin-bottom: 12px;">
                 When you join the presentation, you'll be asked to complete a short participant survey. This simply helps us get to know our audience and understand who we're presenting to.
             </p>
             <p style="font-size: 0.95rem; color: #333; margin-bottom: 12px;">
-                Some questions may include your <strong>total household income</strong> and <strong>residency/citizenship</strong>. For household income, please consider the combined income of everyone in your household, including yourself, your spouse/partner, or other contributing family members (<strong>ideally $50,000/year</strong>).
+                Some questions may include your <strong class="hl">total household income</strong> and <strong>residency/citizenship</strong>. For household income, please consider the <strong class="hl">combined income of everyone</strong> in your household, including yourself, your spouse/partner, or other contributing family members (<strong class="hl">ideally $50,000/year</strong>).
             </p>
             <p style="font-size: 0.95rem; color: #333;">
                 The survey does not affect your ability to join the presentation. Everyone is welcome to attend!
@@ -615,6 +629,10 @@
                         <span class="choice-sub">+$100 Rewards Voucher bonus on top &mdash; tap for instructions</span>
                     </span>
                 </button>
+                <div class="wide-nudge">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#8a6d1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                    <span><strong>Tip:</strong> joining from a wide-screen device gives you the most stable connection and qualifies you for the <strong>$100 Rewards Voucher bonus</strong> on top.</span>
+                </div>
             </div>
 
             <div id="wideView" style="display:none;">
@@ -622,21 +640,16 @@
                 <div class="voucher-tag"><svg class="choice-ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#0f3460" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span>+$100 Rewards Voucher bonus &mdash; yours on top, just for connecting this way.</span></div>
 
                 <div class="way">
-                    <div class="way-title">First way &mdash; Web browser</div>
-                    <p>On your other device, open a web browser such as Chrome or Safari, then type this:</p>
+                    <div class="way-title">If you opened this link on your phone</div>
+                    <p>Just launch a web browser on your <strong>laptop, desktop or tablet</strong> &mdash; like Safari or Chrome &mdash; then type this:</p>
                     <div class="big-url" id="copyUrl">live.travelaht.com/aht</div>
                     <div class="url-hint">tap the address above to copy it</div>
-                    <p>Zoom launches automatically after you enter your preferred email where you&rsquo;d like to receive your travel voucher.</p>
+                    <p>This automatically launches Zoom if it&rsquo;s installed. If not, just choose <strong>&ldquo;Join from Browser&rdquo;</strong>.</p>
                 </div>
 
                 <div class="way">
-                    <div class="way-title">Other way &mdash; Zoom app</div>
-                    <p>If you have Zoom installed on your device, just launch it (no need to sign in), then:</p>
-                    <ol>
-                        <li>Click <strong>JOIN</strong></li>
-                        <li>Enter Meeting ID:<br><span class="big-code">917 5014 9037</span></li>
-                        <li>Enter Passcode:<br><span class="big-code">#2026</span></li>
-                    </ol>
+                    <div class="way-title">Or open the email we sent you</div>
+                    <p>We&rsquo;ve also <strong>emailed you the Zoom link</strong> &mdash; just open that email from your laptop, desktop or tablet, then click the link directly from there.</p>
                 </div>
 
                 <button class="modal-back" id="wideBack" type="button">&larr; Back to options</button>
